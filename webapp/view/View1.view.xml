@@ -1,0 +1,119 @@
+<mvc:View
+    controllerName="homework1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <l:HorizontalLayout>
+                            <Panel
+                                class="sapUiResponsiveMargin"
+                                width="100%"
+                                backgroundDesign="Transparent">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <Title text="조건"/>
+                                        <ToolbarSpacer/>
+                                        <Button icon="sap-icon://search" press="onPress"/>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <VBox>
+                                    <Label text="선택조건:"/>
+                                    <ComboBox id="idCombo" items="{/ES_SYEARSet}" width="40%">
+                                        <core:Item key="{Syear}" text="{Syeart}"/></ComboBox>
+                                </VBox>
+                            </Panel>
+
+                            <Panel
+                                class="sapUiResponsiveMargin"
+                                width="80%"
+                                height="50%"
+                                backgroundDesign="Transparent">
+                                <Label text="항공사별 매출"/>
+                                <l:VerticalLayout class="sapUiContentPadding">
+                                    <Panel>
+                                        <!-- 항공사별 매출 -->
+                                        <Table
+                                            id="idSalesTable"
+                                            items="{/ES_SALESSet}"
+                                            width="80%"
+                                            growing="true"
+                                            growingThreshold="3">
+                                            <columns>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="년도"></Text>
+                                                    </header>
+                                                </Column>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="항공사"></Text>
+                                                    </header>
+                                                </Column>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="항공사명"></Text>
+                                                    </header>
+                                                </Column>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="예약 건수"></Text>
+                                                    </header>
+                                                </Column>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="매출액"></Text>
+                                                    </header>
+                                                </Column>
+                                                <Column >
+                                                    <header>
+                                                        <Text text="취소 건수"></Text>
+                                                    </header>
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem press="onSelectCarr" type="Active">
+                                                    <cells>
+                                                        <Text text="{Syear}"></Text>
+                                                        <Text text="{Carrid}"></Text>
+                                                        <Text text="{Carrname}"></Text>
+                                                        <Text text="{Bkcnt}"></Text>
+                                                        <ObjectNumber
+                                                            number="{
+                                                                     parts:[{path:'Curam'},{path:'Waers'}],
+                                                                    type: 'sap.ui.model.type.Currency',
+                                                                    formatOptions: {showMeasure: false}
+                                                                     }"
+                                                            unit="{Waers}"/>
+                                                        <ObjectNumber
+                                                            number="{
+                                                                    path:'Cacnt'
+                                                                    }"/>
+                                                        <!-- <Text text="{Cacnt}"></Text> -->
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+
+                                    </Panel>
+                                    <l:HorizontalLayout class="sapUiContentPadding">
+                                        <viz:VizFrame height='450px' width="450px" id="idVizFrame" vizType="donut"/>
+                                        <viz:VizFrame height='450px' width="450px" id="idVizFrame2" vizType="stacked_column"/>
+                                    </l:HorizontalLayout>
+                                </l:VerticalLayout>
+                            </Panel>
+                        </l:HorizontalLayout>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
