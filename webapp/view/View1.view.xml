@@ -48,7 +48,7 @@
                                             growing="true"
                                             growingThreshold="3">
                                             <columns>
-                                                <Column >
+                                                <Column>
                                                     <header>
                                                         <Text text="년도"></Text>
                                                     </header>
